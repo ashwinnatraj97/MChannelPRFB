@@ -9,6 +9,7 @@ two_tap = 0;
 
 % Color Scheme for Plotting
 color = rand(M,3);
+sympref('FloatingPointOutput',1)
 
 % Generating a Gaussian White Noise as input to Fitler Bank
 x_length = 128;
@@ -23,9 +24,7 @@ for i = 1:no_of_filters
         two_tap = 0;
     end
     [H] = analysis_bank(h, M);
-    analysis_hermitial = H*H';
     [G] = synthesis_bank(h, M);
-    synthesis_hermitian = G*G';
     
     % Input Signal through the PFRB
     [y, Y] = m_channel_filter_bank(x, M, H, G);
