@@ -58,4 +58,16 @@ function visualise_filter_bank(H, G, x, y, Y, M, two_tap, N, beta, fft_size, col
     axis([-pi pi 0 max(Y_w)]);
     title((index)+"(c). Output of Perfect Reconstruction Filter Bank");
     saveas(prfb_fig, file_name,'epsc')
+    
+    analysis_hermitian = H*H';
+    analysis_hermitian_latex = latex(sym(analysis_hermitian));
+    file = fopen(file_name+"_analysis.tex",'w');
+    fprintf(file,'%s',analysis_hermitian_latex);
+    fclose(file);
+
+    synthesis_hermitian = G*G';
+    synthesis_hermitian_latex = latex(sym(synthesis_hermitian));
+    file = fopen(file_name+"_synthesis.tex",'w');
+    fprintf(file,'%s',synthesis_hermitian_latex);
+    fclose(file);
 end
